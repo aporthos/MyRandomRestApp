@@ -1,5 +1,6 @@
 package net.portes.myrandomrestapp.di
 
+import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,6 +18,9 @@ import retrofit2.Retrofit
 @Module
 @InstallIn(ApplicationComponent::class)
 object UsersModule {
+
+    @Provides
+    fun providesFirestore(): FirebaseFirestore = FirebaseFirestore.getInstance()
 
     @Provides
     fun providesIpcService(retrofit: Retrofit): UserService =

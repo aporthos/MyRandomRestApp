@@ -4,5 +4,6 @@
     <string name="message_timeout_error">Tiempo de espera agotado</string>
     <string name="message_unknow_error">Ocurrio un error desconocido</string>
     <string name="message_error_request">Ocurrio un error al recuperar los datos</string>
+    <string name="message_empty_favourites">Aun no tienes a tus favoritos, agregalos ya !!</string>
     <string name="message_retry">Reintentar</string>
 </resources>

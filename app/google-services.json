@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "336642592900",
+    "project_id": "myrandomrestapp",
+    "storage_bucket": "myrandomrestapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:336642592900:android:360e25ec01cee74b13f2d1",
+        "android_client_info": {
+          "package_name": "net.portes.myrandomrestapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "336642592900-q71v63atgogfsu0n3lck97uq580t84cc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbclSvti9zCHQIGFZr0Mr7O-9gf4CmfM4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "336642592900-q71v63atgogfsu0n3lck97uq580t84cc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

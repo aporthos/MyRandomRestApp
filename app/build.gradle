@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -48,6 +49,8 @@ dependencies {
     implementation navigation.values()
 
     implementation hilt_android.values()
+    implementation 'com.google.firebase:firebase-firestore:23.0.4'
+    implementation 'com.firebaseui:firebase-ui-firestore:8.0.0'
     kapt hilt_kapt.values()
 
     implementation retrofit.values()

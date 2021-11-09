@@ -9,4 +9,6 @@ import net.portes.users.domain.models.UserDto
  */
 interface UsersDataSource {
     fun getUsers(): Either<Failure, UserDto>
+    suspend fun saveUser(user: UserDto): Either<Failure, Boolean>
+    suspend fun deleteUser(id: String): Either<Failure, Boolean>
 }
