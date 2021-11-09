@@ -1,2 +1,4 @@
+include ':shared'
+include ':users'
 include ':app'
 rootProject.name = "MyRandomRestApp"
