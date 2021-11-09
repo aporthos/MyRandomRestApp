@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="message_address">Dirección</string>
+    <string name="message_sms">SMS</string>
+    <string name="message_call">Llamar</string>
+    <string name="message_go_location">Ir a</string>
+    <string name="message_cell">Celular</string>
+    <string name="message_house">Casa</string>
+    <string name="message_email">Correo electronico</string>
+</resources>

@@ -1,0 +1,57 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdkVersion compileSdkVersionValue
+    buildToolsVersion buildToolsVersionValue
+
+    defaultConfig {
+        minSdkVersion minSdkVersionValue
+        targetSdkVersion targetSdkVersionValue
+        versionCode versionCodeValue
+        versionName versionNameValue
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        dataBinding = true
+    }
+}
+
+dependencies {
+    implementation kotlin_stdlib.values()
+    implementation core_android.values()
+
+    implementation hilt_android.values()
+    kapt hilt_kapt.values()
+
+    implementation retrofit.values()
+
+    implementation timber.values()
+
+    implementation coroutines.values()
+
+    implementation lottie.values()
+
+    implementation picasso.values()
+
+    testImplementation 'junit:junit:4.+'
+}
