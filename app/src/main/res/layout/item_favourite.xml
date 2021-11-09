@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="user"
+            type="net.portes.users.domain.models.UserDto" />
+
+        <variable
+            name="listener"
+            type="net.portes.shared.ui.base.OnClickListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/favouriteMaterialCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checkable="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{(v) -> listener.onClicked(v, user)}"
+        app:cardUseCompatPadding="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/nameFavouriteTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/common_dimen_8dp"
+                android:layout_marginTop="@dimen/common_dimen_8dp"
+                android:layout_marginEnd="@dimen/common_dimen_16dp"
+                android:text="@{user.name}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/favouriteImageView"
+                app:layout_constraintTop_toTopOf="@+id/favouriteImageView"
+                tools:text="Ms Jackie Hamilton" />
+
+            <ImageView
+                android:id="@+id/favouriteImageView"
+                android:layout_width="@dimen/common_dimen_100dp"
+                android:layout_height="@dimen/common_dimen_100dp"
+                android:layout_marginStart="@dimen/common_dimen_16dp"
+                android:layout_marginTop="@dimen/common_dimen_16dp"
+                android:layout_marginBottom="@dimen/common_dimen_16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:roundImage="@{user.picture}"
+                tools:ignore="ContentDescription"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/phoneFavouriteTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{user.cell}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                app:layout_constraintStart_toStartOf="@+id/nameFavouriteTextView"
+                app:layout_constraintTop_toBottomOf="@+id/nameFavouriteTextView"
+                tools:text="(412)-721-8064" />
+
+            <ImageView
+                android:id="@+id/deleteFavouriteImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/common_dimen_16dp"
+                android:onClick="@{(v) -> listener.onClicked(v, user)}"
+                android:padding="@dimen/common_dimen_8dp"
+                app:layout_constraintEnd_toEndOf="@+id/nameFavouriteTextView"
+                app:layout_constraintTop_toBottomOf="@+id/nameFavouriteTextView"
+                app:srcCompat="@drawable/ic_favourite"
+                app:tint="@color/purple_700"
+                tools:ignore="ContentDescription" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

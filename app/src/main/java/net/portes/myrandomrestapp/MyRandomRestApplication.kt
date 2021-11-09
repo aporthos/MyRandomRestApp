@@ -1,4 +1,4 @@
-package net.portes.myrandomrestapp.ui
+package net.portes.myrandomrestapp
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

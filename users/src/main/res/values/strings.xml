@@ -7,4 +7,8 @@
     <string name="message_cell">Celular</string>
     <string name="message_house">Casa</string>
     <string name="message_email">Correo electronico</string>
+    <string name="message_save_user_success">Se guardo correctamente al usuario</string>
+    <string name="message_delete_user_success">Se elimino correctamente al usuario</string>
+    <string name="message_save_user_failed">Ocurrio un error al guardar al usuario</string>
+    <string name="message_delete_user_failed">Ocurrio un error al eliminar al usuario</string>
 </resources>

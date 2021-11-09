@@ -12,14 +12,9 @@
         tools:layout="@layout/fragment_users" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="net.portes.myrandomrestapp.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_favourite"
+        android:name="net.portes.myrandomrestapp.ui.favourite.FavouriteFragment"
+        android:label="@string/title_favourite"
+        tools:layout="@layout/fragment_favourite" />
 
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="net.portes.myrandomrestapp.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
 </navigation>

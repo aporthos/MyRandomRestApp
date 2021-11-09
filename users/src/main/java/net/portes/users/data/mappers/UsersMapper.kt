@@ -10,8 +10,7 @@ import javax.inject.Inject
  * @author amadeus.portes
  */
 class UsersMapper @Inject constructor(
-    private val locationMapper: LocationMapper,
-    private val pictureMapper: PictureMapper
+    private val locationMapper: LocationMapper
 ) :
     BaseMapper<UserEntity, UserDto> {
     override fun mapFrom(from: UserEntity): UserDto = UserDto(
@@ -23,7 +22,7 @@ class UsersMapper @Inject constructor(
         name = "${from.name.title} ${from.name.first} ${from.name.last}",
         nat = from.nat,
         phone = from.phone,
-        picture = pictureMapper.mapFrom(from.picture)
+        picture = from.picture.large
     )
 
     private fun getAddress(location: LocationEntity) =

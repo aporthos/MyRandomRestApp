@@ -11,10 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import net.portes.myrandomrestapp.R
 import net.portes.myrandomrestapp.databinding.FragmentUsersBinding
 import net.portes.myrandomrestapp.ui.base.BaseFragment
-import net.portes.shared.extensions.goLocation
-import net.portes.shared.extensions.makeCall
-import net.portes.shared.extensions.observe
-import net.portes.shared.extensions.sms
+import net.portes.shared.extensions.*
 import net.portes.shared.ui.base.ViewState
 import net.portes.users.domain.models.UserDto
 
@@ -30,13 +27,14 @@ class UsersFragment : BaseFragment<FragmentUsersBinding>(), View.OnClickListener
 
     override fun getLayoutRes(): Int = R.layout.fragment_users
 
-    private var userDto: UserDto? = null
+    private var user: UserDto? = null
 
     override fun initializeView() {
         dataBinding().layoutUser.callImageView.setOnClickListener(this)
         dataBinding().layoutUser.goLocationImageView.setOnClickListener(this)
         dataBinding().layoutUser.smsImageView.setOnClickListener(this)
         dataBinding().retryButton.setOnClickListener(this)
+        dataBinding().saveFavouriteFab.setOnClickListener(this)
         dataBinding().usersSwipeRefreshLayout.setOnRefreshListener {
             dataBinding().usersSwipeRefreshLayout.isRefreshing = false
             viewModel.getUsersList()
@@ -46,6 +44,7 @@ class UsersFragment : BaseFragment<FragmentUsersBinding>(), View.OnClickListener
 
     override fun initObservers() {
         observe(viewModel.usersList, ::resultUsersList)
+        observe(viewModel.saveUser, ::resultSaveUser)
     }
 
     private fun resultUsersList(result: ViewState<UserDto>) {
@@ -54,7 +53,7 @@ class UsersFragment : BaseFragment<FragmentUsersBinding>(), View.OnClickListener
             is ViewState.Success -> {
                 hideLoader()
                 dataBinding().user = result.data
-                userDto = result.data
+                user = result.data
                 dataBinding().usersNestedScrollView.isVisible = true
                 dataBinding().errorConnectionRelativeLayout.isGone = true
             }
@@ -66,24 +65,43 @@ class UsersFragment : BaseFragment<FragmentUsersBinding>(), View.OnClickListener
         }
     }
 
+    private fun resultSaveUser(result: ViewState<Boolean>) {
+        when (result) {
+            is ViewState.Loading -> showLoader()
+            is ViewState.Success -> {
+                hideLoader()
+                requireContext().toast(R.string.message_save_user_success)
+            }
+            is ViewState.Error -> {
+                requireContext().toast(R.string.message_save_user_failed)
+                hideLoader()
+            }
+        }
+    }
+
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.callImageView -> {
-                userDto?.cell?.let {
+                user?.cell?.let {
                     requestPermissions()
                 }
             }
             R.id.goLocationImageView -> {
-                userDto?.location?.coordinates?.let {
+                user?.location?.coordinates?.let {
                     requireContext().goLocation(it.latitude, it.longitude)
                 }
             }
             R.id.smsImageView -> {
-                userDto?.cell?.let {
+                user?.cell?.let {
                     requireContext().sms(it)
                 }
             }
             R.id.retryButton -> viewModel.getUsersList()
+            R.id.saveFavouriteFab -> {
+                user?.let {
+                    viewModel.saveUser(it)
+                }
+            }
         }
     }
 
@@ -109,7 +127,7 @@ class UsersFragment : BaseFragment<FragmentUsersBinding>(), View.OnClickListener
     }
 
     private fun toCallPhone() {
-        userDto?.cell?.let {
+        user?.cell?.let {
             requireContext().makeCall(it)
         }
     }
