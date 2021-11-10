@@ -11,9 +11,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import net.portes.myrandomrestapp.R
 import net.portes.myrandomrestapp.databinding.FragmentUsersBinding
 import net.portes.myrandomrestapp.ui.base.BaseFragment
+import net.portes.myrandomrestapp.ui.models.UserUI
 import net.portes.shared.extensions.*
 import net.portes.shared.ui.base.ViewState
-import net.portes.users.domain.models.UserDto
 
 @AndroidEntryPoint
 class UsersFragment : BaseFragment<FragmentUsersBinding>(), View.OnClickListener,
@@ -27,7 +27,7 @@ class UsersFragment : BaseFragment<FragmentUsersBinding>(), View.OnClickListener
 
     override fun getLayoutRes(): Int = R.layout.fragment_users
 
-    private var user: UserDto? = null
+    private var user: UserUI? = null
 
     override fun initializeView() {
         dataBinding().layoutUser.callImageView.setOnClickListener(this)
@@ -47,7 +47,7 @@ class UsersFragment : BaseFragment<FragmentUsersBinding>(), View.OnClickListener
         observe(viewModel.saveUser, ::resultSaveUser)
     }
 
-    private fun resultUsersList(result: ViewState<UserDto>) {
+    private fun resultUsersList(result: ViewState<UserUI>) {
         when (result) {
             is ViewState.Loading -> showLoader()
             is ViewState.Success -> {

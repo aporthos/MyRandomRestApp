@@ -32,11 +32,17 @@ ext {
     versions.easypermissions = '1.0.0'
     versions.hilt_android_gradle_plugin = '2.31.2-alpha'
     versions.coroutines_play_services = '1.1.1'
+    versions.firestore = '23.0.4'
+    versions.ui_firestore = '8.0.0'
+    versions.google_services = '4.3.10'
+    versions.navigation_safe_args = '2.3.5'
 
     classpath_all = [
-            tools_build_gradle       : "com.android.tools.build:gradle:${versions.tools_build_gradle}",
-            kotlin_gradle_plugin     : "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}",
+            tools_build_gradle        : "com.android.tools.build:gradle:${versions.tools_build_gradle}",
+            kotlin_gradle_plugin      : "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}",
             hilt_android_gradle_plugin: "com.google.dagger:hilt-android-gradle-plugin:${versions.hilt_android_gradle_plugin}",
+            google_services           : "com.google.gms:google-services:${versions.google_services}",
+            navigation_safe_args      : "androidx.navigation:navigation-safe-args-gradle-plugin:${versions.navigation_safe_args}",
     ]
 
 
@@ -116,5 +122,10 @@ ext {
 
     coroutines_play_services = [
             coroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:${versions.coroutines_play_services}"
+    ]
+
+    firebase = [
+            firestore   : "com.google.firebase:firebase-firestore:${versions.firestore}",
+            ui_firestore: "com.firebaseui:firebase-ui-firestore:${versions.ui_firestore}"
     ]
 }
