@@ -73,5 +73,5 @@ dependencies {
     implementation project(":users")
     implementation project(":shared")
 
-    testImplementation 'junit:junit:4.+'
+    testImplementation tests.values()
 }
