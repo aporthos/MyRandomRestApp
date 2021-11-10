@@ -16,14 +16,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyRandomRestApp">
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name">
+            android:name=".ui.SplashActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.MyRandomRestApp.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.MainActivity"
+            android:label="@string/app_name" />
     </application>
 
 </manifest>

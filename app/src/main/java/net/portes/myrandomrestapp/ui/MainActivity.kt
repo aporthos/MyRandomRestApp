@@ -1,5 +1,6 @@
-package net.portes.myrandomrestapp
+package net.portes.myrandomrestapp.ui
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -11,9 +12,18 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
+import net.portes.myrandomrestapp.R
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        @JvmStatic
+        fun launch(from: AppCompatActivity) {
+            from.startActivity(Intent(from, MainActivity::class.java))
+            from.finish()
+        }
+    }
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
