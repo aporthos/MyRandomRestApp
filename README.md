@@ -21,7 +21,9 @@ An MVVM architecture was used, using Clean Architecture, along with the reposito
 - [x] Lottie
 
 ## Modules:
-1. Users : Get a User random and save in Firestore
+1. Users : Get a User random, you can refresh user and save in Firestore, 
 3. Favourites : Retrieve Users favourites from Firestore, you can delete from Firestore
 4. shared : Contains method extensions, constants, base classes
 
+
+![Nov-10-2021 1-06-39 PM](https://user-images.githubusercontent.com/8774947/141177236-11ef7997-2f2b-4d14-a7ba-282bd487e428.gif)
