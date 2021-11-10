@@ -6,7 +6,7 @@ import net.portes.shared.extensions.call
 import net.portes.shared.models.Either
 import net.portes.shared.models.Failure
 import net.portes.shared.utils.NetworkHandler
-import net.portes.users.data.mappers.UsersListMapper
+import net.portes.users.data.mappers.UsersMapper
 import net.portes.users.data.services.UserService
 import net.portes.users.domain.datasources.UsersDataSource
 import net.portes.users.domain.models.UserDto
@@ -19,7 +19,7 @@ import javax.inject.Inject
 class UsersDataSourceImpl @Inject constructor(
     private val service: UserService,
     private val networkHandler: NetworkHandler,
-    private val mapper: UsersListMapper,
+    private val mapper: UsersMapper,
     private val firestore: FirebaseFirestore
 ) : UsersDataSource {
 

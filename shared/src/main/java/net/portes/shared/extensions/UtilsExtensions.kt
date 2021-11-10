@@ -16,6 +16,8 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import timber.log.Timber
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 
 /**
  * @author amadeus.portes
@@ -72,3 +74,20 @@ fun Context.sms(phone: String?, body: String = "") {
 fun Context?.toast(@StringRes textId: Int, duration: Int = Toast.LENGTH_LONG) = this?.let { Toast.makeText(it, textId, duration).show() }
 
 fun Fragment?.toast(@StringRes textId: Int, duration: Int = Toast.LENGTH_LONG) = this?.let { activity.toast(textId, duration) }
+
+fun <T> LiveData<T>.getThisValue(): T {
+    val data = arrayOfNulls<Any>(1)
+    val latch = CountDownLatch(1)
+    val observer = object : Observer<T> {
+        override fun onChanged(o: T?) {
+            data[0] = o
+            latch.countDown()
+            removeObserver(this)
+        }
+    }
+    observeForever(observer)
+    latch.await(2, TimeUnit.SECONDS)
+
+    @Suppress("UNCHECKED_CAST")
+    return data[0] as T
+}
