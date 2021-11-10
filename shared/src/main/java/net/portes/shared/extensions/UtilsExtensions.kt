@@ -60,6 +60,8 @@ fun Context.goLocation(latitude: String, longitude: String): Boolean {
     }
 }
 
+fun String?.value(default: String = ""): String = this ?: default
+
 fun Context.sms(phone: String?, body: String = "") {
     val smsToUri = Uri.parse("smsto:$phone")
     val intent = Intent(Intent.ACTION_SENDTO, smsToUri)

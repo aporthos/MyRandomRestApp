@@ -7,7 +7,7 @@
 
         <variable
             name="user"
-            type="net.portes.users.domain.models.UserDto" />
+            type="net.portes.myrandomrestapp.ui.models.UserUI" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

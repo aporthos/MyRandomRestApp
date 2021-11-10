@@ -44,7 +44,7 @@ dependencies {
 
     implementation coroutines.values()
 
-    implementation 'com.google.firebase:firebase-firestore:23.0.4'
+    implementation firebase.firestore
     implementation coroutines_play_services.values()
 
     implementation timber.values()

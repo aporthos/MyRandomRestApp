@@ -4,6 +4,7 @@ import android.view.View
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
@@ -12,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import net.portes.myrandomrestapp.R
 import net.portes.myrandomrestapp.databinding.FragmentFavouriteBinding
 import net.portes.myrandomrestapp.ui.base.BaseFragment
+import net.portes.myrandomrestapp.ui.mappers.UserUIMapper
 import net.portes.shared.extensions.observe
 import net.portes.shared.extensions.toast
 import net.portes.shared.ui.base.OnClickListener
@@ -30,6 +32,9 @@ class FavouriteFragment : BaseFragment<FragmentFavouriteBinding>(), OnClickListe
     @Inject
     lateinit var firestore: FirebaseFirestore
 
+    @Inject
+    lateinit var userUIMapper: UserUIMapper
+
     private val viewModel: FavouriteViewModel by viewModels()
     private lateinit var favouritesAdapter: FavouritesAdapter
     override fun getLayoutRes(): Int = R.layout.fragment_favourite
@@ -40,7 +45,7 @@ class FavouriteFragment : BaseFragment<FragmentFavouriteBinding>(), OnClickListe
             .setQuery(query, UserDto::class.java)
             .build()
 
-        favouritesAdapter = object: FavouritesAdapter(options, this) {
+        favouritesAdapter = object : FavouritesAdapter(options, this) {
             override fun onDataChanged() {
                 super.onDataChanged()
                 if (itemCount == 0) {
@@ -51,6 +56,7 @@ class FavouriteFragment : BaseFragment<FragmentFavouriteBinding>(), OnClickListe
                     dataBinding().favouritesRecyclerView.isVisible = true
                 }
             }
+
             override fun onError(e: FirebaseFirestoreException) {
                 super.onError(e)
                 Timber.e("onError: $e")
@@ -77,7 +83,9 @@ class FavouriteFragment : BaseFragment<FragmentFavouriteBinding>(), OnClickListe
     override fun onClicked(v: View, item: UserDto) {
         when (v.id) {
             R.id.favouriteMaterialCardView -> {
-                Timber.i("onClicked: -> $item")
+                val action =
+                    FavouriteFragmentDirections.showFavouriteDetail(userUIMapper.mapFrom(item))
+                v.findNavController().navigate(action)
             }
             R.id.deleteFavouriteImageView -> viewModel.deleteUser(item.id)
         }

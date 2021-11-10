@@ -15,6 +15,18 @@
         android:id="@+id/navigation_favourite"
         android:name="net.portes.myrandomrestapp.ui.favourite.FavouriteFragment"
         android:label="@string/title_favourite"
-        tools:layout="@layout/fragment_favourite" />
+        tools:layout="@layout/fragment_favourite" >
+        <action
+            android:id="@+id/showFavouriteDetail"
+            app:destination="@id/favouriteDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favouriteDetailFragment"
+        android:name="net.portes.myrandomrestapp.ui.favourite.FavouriteDetailFragment"
+        android:label="@string/title_my_favourite" >
+        <argument
+            android:name="user"
+            app:argType="net.portes.myrandomrestapp.ui.models.UserUI" />
+    </fragment>
 
 </navigation>
